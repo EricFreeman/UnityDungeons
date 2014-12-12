@@ -1,22 +1,13 @@
-﻿using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Assets.Resources.Scripts
 {
-    public class MouseMovement : MonoBehaviour
+    public class PlayerMovement : MonoBehaviour
     {
         private Vector3 _movePosition;
         public float Speed = 3;
 
         private bool _isPositionSet;
-
-        public Dictionary<KeyCode, Vector3> KeyOffset = new Dictionary<KeyCode, Vector3>
-        {
-            {KeyCode.W, new Vector3(0, 0, 1)},
-            {KeyCode.S, new Vector3(0, 0, -1)},
-            {KeyCode.A, new Vector3(-1, 0, 0)},
-            {KeyCode.D, new Vector3(1, 0, 0)},
-        }; 
 
         void Update()
         {
