@@ -6,6 +6,9 @@ namespace Assets.Resources.Scripts
     public class Director : MonoBehaviour
     {
         public GameObject Tile;
+        public GameObject Player;
+
+        private bool _isPlayerPlaced;
 
         void Start()
         {
@@ -16,6 +19,7 @@ namespace Assets.Resources.Scripts
                 {
                     if (g[x, z] == 1)
                     {
+                        if(!_isPlayerPlaced) Player.transform.position = new Vector3(x, 0, z);
                         var t = (GameObject) Instantiate(Tile);
                         t.transform.position = new Vector3(x, 0, z);
                     }
