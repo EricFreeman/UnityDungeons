@@ -7,15 +7,15 @@ namespace Assets.Resources.Scripts
         private Vector3 _movePosition;
         public float Speed = 3;
 
-        void Start()
-        {
-            _movePosition = transform.position;
-        }
+        private bool _isPositionSet;
 
         void Update()
         {
             CheckForNewPosition();
-            transform.position = Vector3.MoveTowards(transform.position, _movePosition, Speed * Time.deltaTime);
+
+            // TODO: Do actual pathfinding here instead of just walking through walls!
+            if(_isPositionSet)
+                transform.position = Vector3.MoveTowards(transform.position, _movePosition, Speed * Time.deltaTime);
         }
 
         private void CheckForNewPosition()
@@ -25,7 +25,10 @@ namespace Assets.Resources.Scripts
                 var pos = Camera.main.ScreenPointToRay(Input.mousePosition);
                 RaycastHit hit;
                 if (Physics.Raycast(pos, out hit))
-                    _movePosition = hit.point;
+                {
+                    _isPositionSet = true;
+                    _movePosition = hit.collider.transform.position;
+                }
             }
         }
     }
